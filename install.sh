@@ -42,6 +42,18 @@ for script in dwm.sh dwmup.sh fcitx.sh monitor_init.sh status.sh stup.sh surfup.
     create_symlink "$DOTFILES/scripts/dwm/$script" "$SCRIPTS_DIR/$script"
 done
 
+# Create symlinks for local bin scripts
+echo -e "\nCreating symlinks for local bin scripts..."
+for script in s scs vlen; do
+    create_symlink "$DOTFILES/.local/bin/$script" "$HOME/.local/bin/$script"
+done
+
+# Create config symlinks
+echo -e "\nCreating symlinks for config files..."
+for config in zathura-manga zathura-Manga; do
+    create_symlink "$DOTFILES/.config/$config" "$HOME/.config/$config"
+done
+
 # Make scripts executable
 echo -e "\nMaking scripts executable..."
 chmod +x "$SCRIPTS_DIR/"*

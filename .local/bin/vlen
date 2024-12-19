@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Function to get the duration of a video file using ffprobe
+get_video_duration() {
+    duration=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$1" 2>/dev/null)
+    echo "$duration"
+}
+
+# Function to calculate the total duration of a list of video files
+calculate_total_duration() {
+    total_duration=0
+    for file in "$@"; do
+        duration=$(get_video_duration "$file")
+        if [[ -n $duration ]]; then
+            total_duration=$(awk "BEGIN {print $total_duration + $duration; exit}")
+        else
+            echo "Error getting duration for $file"
+        fi
+    done
+    echo "$total_duration"
+}
+
+# Check if at least one argument is provided
+if [ "$#" -eq 0 ]; then
+    echo "Usage: $0 <video_file1> <video_file2> ..."
+    exit 1
+fi
+
+# Example usage
+total_duration=$(calculate_total_duration "$@")
+echo "Total Duration: $total_duration seconds"

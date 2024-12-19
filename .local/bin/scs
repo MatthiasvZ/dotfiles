@@ -1,0 +1,6 @@
+#!/bin/bash
+#
+
+pushd $HOME/screenshots
+import -window root "$(date).tiff"
+popd

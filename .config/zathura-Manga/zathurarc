@@ -1,0 +1,7 @@
+set adjust-open "width"
+set pages-per-row 1
+set zoom-step 20
+set guioptions none
+set scroll-step 50
+set vertical-center true
+set page-cache-size 5

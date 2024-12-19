@@ -1,0 +1,4 @@
+#!/bin/bash
+fn=$1
+[ -z "$fn" ] && fn=$(date -Iseconds) 
+maim --quality 10 --hidecursor -g $(slop) $HOME/screenshots/$fn.webp
